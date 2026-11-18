@@ -96,6 +96,7 @@ type app struct {
 	toast          string                       // a message to show once
 	dailySpin      spinState                    // the record on the feature card
 	dailyBars      barState                     // the bars on its play button
+	proxyField     *string                      // the proxy setting, as being typed
 	settingText    map[string]*string           // the settings of sources, as being typed
 	settingEdits   map[string]*settingEdit      // pending typed-setting saves, main thread only
 	settingSaves   map[*library]<-chan struct{} // source save order, main thread only
@@ -337,6 +338,9 @@ func Run() error {
 	a.useUpdater(i18n.Resolve(loadSettings().Language, systemLanguages()))
 	mygo.App.WhenReady(func() {
 		a.settings = loadSettings()
+		// Before any window with a page: on Windows, WebView2 takes the
+		// proxy it's told here, and keeps it for the process.
+		a.settings.applyProxy()
 		a.settings.applyAppearance()
 		i18n.SetLanguage(i18n.Resolve(a.settings.Language, systemLanguages()))
 		a.npPane = a.lyricsPaneChosen()

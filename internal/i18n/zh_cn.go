@@ -211,6 +211,7 @@ var zhCN = map[string]string{
 	"Post":                                   "发送",
 	"Previous":                               "上一首",
 	"Progress":                               "播放进度",
+	"Proxy":                                  "代理",
 	"Quality":                                "音质",
 	"Queue":                                  "播放队列",
 	"Quit %s":                                "退出%s",
@@ -377,4 +378,6 @@ var zhCN = map[string]string{
 	"an hour ago":                                                   "1 小时前",
 	"just now":                                                      "刚刚",
 	"yesterday":                                                     "昨天",
+
+	"Send the app's requests and its sign-in pages through this proxy, such as http://127.0.0.1:7890. Empty follows the system and the environment": "让应用的请求和登录页面都走这个代理，例如 http://127.0.0.1:7890；留空则跟随系统设置和环境变量",
 }

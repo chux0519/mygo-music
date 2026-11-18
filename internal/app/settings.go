@@ -19,6 +19,10 @@ type settings struct {
 	Language string `json:"language"`
 	// Source is the ID of the source last used.
 	Source string `json:"source,omitempty"`
+	// Proxy is what the app's requests and the pages of its windows go
+	// through, such as http://127.0.0.1:7890. Empty for the one the
+	// environment names, and for none, the system's settings alone.
+	Proxy string `json:"proxy,omitempty"`
 	// Captions writes down episodes as they play, for their captions, on this
 	// device, once the listener has the model.
 	Captions bool `json:"captions"`

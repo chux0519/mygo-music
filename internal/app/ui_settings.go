@@ -341,6 +341,18 @@ func (a *app) settingsSections(c *ui.Context, p palette) []settingsSection {
 				a.setLanguage(code)
 			}
 		})
+		row(T("Proxy"), T("Send the app's requests and its sign-in pages through this proxy, such as http://127.0.0.1:7890. Empty follows the system and the environment"), func() {
+			if a.proxyField == nil {
+				v := s.Proxy
+				a.proxyField = &v
+			}
+			in := ui.TextInput(c.Key("proxy"), a.proxyField).AlignSelf(ui.Start).Width(320).MaxWidthPercent(100).Label(T("Proxy")).FontSize(13)
+			if in.Submitted() || !in.Focused() && strings.TrimSpace(*a.proxyField) != s.Proxy {
+				s.Proxy = strings.TrimSpace(*a.proxyField)
+				a.changed()
+				a.settings.applyProxy()
+			}
+		})
 		row(T("Appearance"), "", func() {
 			modes := []string{"system", "light", "dark"}
 			i := 0
